@@ -38,21 +38,20 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Indice</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Acerca de Agrichat</a>
+      <a href="#Acerca de Agrichat">Acerca de Agrichat</a>
       <ul>
-        <li><a href="#built-with">Software</a></li>
+        <li><a href="#Construccion">Software</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerrequisitos</a></li>
-      </ul>
+      <a href="#Antes de empezar">Getting Started</a>
     </li>
-    <li><a href="#usage">Uso</a></li>
+    <li><a href="#Chat">Chat</a></li>
+    <li><a href="#Extracción de datos no estructurados">Extracción de datos no estructurados</a></li>
+    <li><a href="#Evaluacion">Evaluacion de RAG con RAGAS</a></li>
     <li><a href="#Contacto">Contact</a></li>
     
   </ol>
@@ -61,159 +60,90 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Acerca de Agrichat
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+AgriChat pertenece al TFM dentro del Máster en Ciencia de Datos de la UOC. Como tal, esta sujeto a errores de los cuales son responsables los usuarios que empleen agrichat.
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Agrichat es un sistema conversacional basado en RAG junto con el poder del modelo Table Transformer para la identificacion de datos tabulares en archivos .pdf.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Su objetivo es poder extraer tablas de documentos pdf para transformarlas en informacion estructurada en formato .csv.
 
 
+### Construccion
 
-### Built With
+Para el desarrollo de AgriChat se ha usado:
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+* Streamlite
+* LLamaIndex
+* Table Transformer from Microsoft
+* Pinecone
+* RAGAS
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#arriba">ARRIBA</a>)</p>
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Antes de empezar
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+AgriChat funciona gracias a OPENIA, tanto para la construccion de embeddings como para el uso de LLMs.Es requisito tener un API_KEY.
 
-### Prerequisites
+Agrichat usa como base de conocimiento la base de datos vectorial. Se necesita una cuenta.
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Dado que los modelos estan alojados en hugginghface:
+* IDENTIFICADOR TABLAS: https://huggingface.co/kike/table-detection-fito
+* IDENTIFICADOR ESTRUCTURA: https://huggingface.co/kike/table_structured_recognition_fito 
 
-### Installation
+es necesarios descargarselos en local y construir la siguiente estructura de carpetas en la raiz del proyecto.
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+![alt text](images/1.png)
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+Agrichat se centra en la documentacion oficial del Ministerio de Agricultura y la informacion que produce en formato pdf sobre productos fitosanitarios. Asi pues los pdf que admite son los que disponen del siguiente formnato:
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+![alt text](images/2.png)
+![alt text](images/3.png)
+![alt text](images/4.png)
+
+
+### Chat
+
+Mediante esta pestaña podras chatear con Agrichat sobre los PDFs. Se trata de un sistema RAG que proporciona conocimiento desde los pdf.
+
+![alt text](images/5.png)
+
+
+
+<p align="right">(<a href="#readme-top">ARRIBA</a>)</p>
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Tablas detectadas.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+En esta seccion se puede observar las tablas que han podido ser extraido y descargar sus csv.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+![alt text](images/6.png)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+<p align="right">(<a href="#readme-top">ARRIBA</a>)</p>
 
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Evaluacion
+Se dispone de un boton de evaluación que al ser presionado se lanza una evaluacion con el framework RAGAS para evaluar el comportamiento del RAG.
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+## Contacto
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+ Enrique Villalobos Torregrosa - kike_mto@hotmail.com
 
 
+<p align="right">(<a href="#readme-top">ARRIBA</a>)</p>
 
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
