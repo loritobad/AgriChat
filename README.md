@@ -139,7 +139,9 @@ Se dispone de un boton de evaluación que al ser presionado se lanza una evaluac
 
 ## Contacto
 
- Enrique Villalobos Torregrosa - kike_mto@hotmail.com
+ Enrique Villalobos Torregrosa -> kike_mto@hotmail.com
+ 
+ Trabajo Final de Máster -> https://github.com/loritobad/AgriChat/TFM/TFM-AgriChat.pdf
 
 
 <p align="right">(<a href="#readme-top">ARRIBA</a>)</p>
