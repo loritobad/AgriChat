@@ -35,7 +35,7 @@ from BD.db_pinecone import conf_pinecone
 path_pdf = os.path.join("data_pdf")
 
 
-
+#construcción del indice en Pinecone con los chunks 
 def create_documents(pc):
     
     Settings.chunk_size = 512
@@ -52,7 +52,6 @@ def create_documents(pc):
     
     embed_model = OpenAIEmbedding(model="text-embedding-3-small",
                                         api_key=os.environ.get("OPENAI_API_KEY"),
-                                        embed_batch_size=10,
                                         dimensions=1536)
     
             
@@ -85,6 +84,7 @@ def create_documents(pc):
     
     
 
+# traducción de query a embedding
 def query_engine_open_ai(pc, query_user):
     print("aqui")
     pinecone_index  = pc.Index('agrichat')
@@ -94,7 +94,7 @@ def query_engine_open_ai(pc, query_user):
 
     nodes = retriever.retrieve(query_user)
     print([i.get_content() for i in nodes])
-    answer= [i.get_content() for i in nodes]
-    return answer
-    # print(pprint_source_node(nodes[0]))
-    # print(nodes[0].node.metadata)
+    context_augmented= [i.get_content() for i in nodes]
+    
+    return context_augmented
+    

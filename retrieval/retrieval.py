@@ -15,8 +15,7 @@ def retrieval(pinecone_index):
     
     embed_model = OpenAIEmbedding(model="text-embedding-3-small",
                                   api_key=os.environ.get("OPENAI_API_KEY"),
-                                  embed_batch_size=10,
-                                  dimensions=384)
+                                  dimensions=1536)
     
     namespace = '' # default namespace
 
@@ -28,36 +27,9 @@ def retrieval(pinecone_index):
     )
     service_context = ServiceContext.from_defaults(embed_model=embed_model)
     
-    index = VectorStoreIndex.from_documents(
-        #documents,
-        storage_context=storage_context,
-        service_context=service_context
-)
+#     index = VectorStoreIndex.from_documents(
+#         #documents,
+#         storage_context=storage_context,
+#         service_context=service_context
+# )
     
-    
-    
-    
-    
-    
-#     pinecone_index = vector_store.Index("agrichat")
-
-#     vector_store = PineconeVectorStore(pinecone_index=pinecone_index,
-#                                        index_name='agrichat',
-#                                        api_key=os.environ.get("PINECONE_API_KEY")
-#                                        )
-
-#     vector_index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
-
-# # Grab 5 search results
-#     retriever = VectorIndexRetriever(index=vector_index,
-#                                      similarity_top_k=5,
-#                                      embed_model= Settings.embed_model,
-#                                      verbose=True)
-    
-
-#     query_engine = RetrieverQueryEngine(retriever=retriever)
-
-
-#     llm_query = query_engine.query('¿Como se llama el producto')
-
-#     print(llm_query)

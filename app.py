@@ -147,8 +147,9 @@ if __name__ == "__main__":
             if not st.session_state.get("pdf_processed", False):
                 # Convertir el PDF a imágenes
                 convert_pdf_to_img(pdf_bytes, pdf_name)
-                procesing_detect_table()
-                create_documents(pc)
+                create_documents(pc) #crea los embeddings en pinecone
+                procesing_detect_table() # explota el modelo Table Transformer, probar asincronia
+                
                 st.session_state.pdf_processed = True  
 
             

@@ -4,8 +4,6 @@ import os
 import pandas as pd
 import csv
 
-from evaluation.eval_ragas import generated_sample_sintetic
-
 
 st.set_page_config(
     page_title="AgriChat",

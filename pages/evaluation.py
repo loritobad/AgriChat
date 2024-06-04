@@ -42,4 +42,4 @@ with evaluation:
     if st.button("Evaluar"):
         eval_generation = evaluate_generation()
         st.write(eval_generation)
-   
+       
