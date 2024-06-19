@@ -10,6 +10,8 @@ from ragas.metrics import answer_relevancy, faithfulness, context_precision, con
 
 from datasets import Dataset
 
+import streamlit as st
+
 from langchain.schema import HumanMessage
 
 from BD.db_pinecone import conf_pinecone
@@ -24,8 +26,8 @@ api_key = os.getenv("OPENAI_API_KEY")
 distributions = {
         simple: 0.2,
         reasoning: 0.2,
-        multi_context: 0.2,
-        conditional: 0.4
+        multi_context: 0.4,
+        conditional: 0.2
     }
 
 
@@ -54,6 +56,8 @@ def query_pinecone(embedding):
         metadata = json.loads(metadata_str)
         text = metadata.get('text', '')
         contexts.append(text)
+    
+    
     return contexts
     
    
@@ -124,7 +128,7 @@ def generate_custom_testset(documents, num_tests=1, distributions=None):
 def evaluate_generation():
     documents = read_pdfs_from_directory()
     # generate_custom_testset(documents, num_tests=1, distributions=distributions)
-    testset_df = generate_custom_testset(documents, num_tests=20, distributions=distributions)
+    testset_df = generate_custom_testset(documents, num_tests=2, distributions=distributions)
     
     eval_results = evaluate(
         testset_df,
@@ -135,6 +139,7 @@ def evaluate_generation():
         answer_relevancy,
         answer_correctness
       ],
+        llm=ChatOpenAI(model="gpt-4", api_key=api_key)
     )
     
     eval_results = eval_results.to_pandas()
@@ -143,6 +148,8 @@ def evaluate_generation():
                         index=False,
                         encoding='utf-8',
                         quotechar='"')
+    
+    st.session_state.eval_results = eval_results
     
     return eval_results
 

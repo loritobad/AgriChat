@@ -39,7 +39,9 @@ with evaluation:
     
     st.title("Evaluación LLM")
     
+    if "eval_results" in st.session_state:
+        st.write(st.session_state.eval_results)
+            
     if st.button("Evaluar"):
-        eval_generation = evaluate_generation()
-        st.write(eval_generation)
-       
+        val_generation = evaluate_generation()
+        st.write(val_generation)
